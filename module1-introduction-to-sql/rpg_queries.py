@@ -51,6 +51,11 @@ print(f"amount of weapons: {curs.execute(query).fetchall()[0][0]}")
 
 print(f"amount of non-weapons: {174 - curs.execute(query).fetchall()[0][0]}")
 
+query = """
+SELECT COUNT(DISTINCT item_id) FROM armory_item
+WHERE item_id NOT IN (SELECT item_ptr_id FROM armory_weapon)
+"""
+ print(f"amount of non-weapons: {curs.execute(query).fetchall()[0][0]}")
 
 # counting items per character
 
